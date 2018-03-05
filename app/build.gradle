@@ -1,0 +1,77 @@
+apply plugin: 'com.android.application'
+
+// 项目配置
+def app = rootProject.ext.app
+
+// 库
+def libs = rootProject.ext.libs
+
+android {
+  compileSdkVersion app.compileSdk
+  defaultConfig {
+    applicationId app.packageName
+    minSdkVersion app.minSdk
+    targetSdkVersion app.targetSdk
+    versionCode app.versionCode
+    versionName app.versionName
+    multiDexEnabled true
+  }
+
+  //  jackOptions{
+  //    enabled true
+  //  }
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+  buildTypes {
+    debug {
+//      signingConfig sign ingConfigs.release
+    }
+    release {
+      minifyEnabled true
+      shrinkResources true
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//      signingConfig signingConfigs.release
+    }
+  }
+}
+
+dependencies {
+  implementation fileTree(dir: 'libs', include: ['*.jar'])
+  implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+  testImplementation 'junit:junit:4.12'
+  androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+
+  //  support-V7
+  implementation "${libs.support_V7}"
+  implementation "${libs.support_V4}"
+  // 解决65535
+  implementation "${libs.multidex}"
+  // design 控件库
+  implementation "${libs.design}"
+  // cardView
+  implementation "${libs.cardView}"
+  // Rx
+  implementation "${libs.rxAndroid}"
+  implementation "${libs.rxJava}"
+  implementation "${libs.rxPermission}"
+  // network
+  implementation "${libs.retrofit}"
+  implementation "${libs.gosnCov}"
+  implementation "${libs.adapterRxJava}"
+  implementation "${libs.okhttp}"
+  implementation "${libs.okhttpLog}"
+  implementation "${libs.okhttpUrlCollection}"
+  // glide
+  implementation "${libs.glide}"
+  annotationProcessor "${libs.glideCompiler}"
+  // butterKnife
+  implementation "${libs.butterKnife}"
+  annotationProcessor "${libs.butterKnifeCompiler}"
+  // dagger2
+  implementation "${libs.dragger}"
+  annotationProcessor "${libs.draggerCompiler}"
+  // recyclerView多功能适配器
+  implementation "${libs.brvah}"
+}
