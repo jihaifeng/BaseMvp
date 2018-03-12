@@ -1,7 +1,7 @@
 package com.example.meechao.basemvp.http;
 
 import android.util.Log;
-import com.example.meechao.basemvp.App;
+import com.example.meechao.basemvp.BaseApplication;
 import com.example.meechao.basemvp.BuildConfig;
 import com.example.meechao.basemvp.utils.NetWorkUtil;
 import java.io.File;
@@ -57,7 +57,7 @@ public class HttpHelper {
     OkHttpClient.Builder builder = new OkHttpClient.Builder();
 
     // 设置缓存机制
-    File file = new File(App.getInstance().getExternalCacheDir(), "app_cache");
+    File file = new File(BaseApplication.getInstance().getExternalCacheDir(), "app_cache");
     Cache cache = new Cache(file, 1024 * 1024 * 50);//设置缓存文件最大值50M
     Interceptor cacheInterceptor = getCacheInterceptor(cache);
     builder.cache(cache);
@@ -114,7 +114,7 @@ public class HttpHelper {
 
     builder.addInterceptor(chain -> {
 
-      if (NetWorkUtil.isNetworkConnected(App.getInstance())) {
+      if (NetWorkUtil.isNetworkConnected(BaseApplication.getInstance())) {
         return chain.proceed(chain.request());
       } else {
         throw new ConnectException("网络中断，请检查网络后重试");
@@ -166,11 +166,11 @@ public class HttpHelper {
     Interceptor cacheInterceptor = new Interceptor() {
       @Override public Response intercept(Chain chain) throws IOException {
         Request request = chain.request();
-        if (!NetWorkUtil.isNetworkConnected(App.getInstance())) {
+        if (!NetWorkUtil.isNetworkConnected(BaseApplication.getInstance())) {
           request = request.newBuilder().cacheControl(CacheControl.FORCE_CACHE).build();
         }
         Response response = chain.proceed(request);
-        if (NetWorkUtil.isNetworkConnected(App.getInstance())) {
+        if (NetWorkUtil.isNetworkConnected(BaseApplication.getInstance())) {
           // 有网络时 设置缓存超时时间0个小时
           int maxAge = 0;
           response.newBuilder()

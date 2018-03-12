@@ -11,15 +11,16 @@ import android.support.multidex.MultiDex;
  * Date：2018-03-01 16:21
  * Mail：jihaifeng@meechao.com
  */
-public class App extends Application {
-  private static App instance;
+public class BaseApplication extends Application {
+  private static BaseApplication instance;
 
-  public synchronized static App getInstance() {
+  public synchronized static BaseApplication getInstance() {
     return instance;
   }
 
   @Override protected void attachBaseContext(Context base) {
     super.attachBaseContext(base);
+    //解决65535
     MultiDex.install(this);
   }
 }

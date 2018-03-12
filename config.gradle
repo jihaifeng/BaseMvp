@@ -38,18 +38,5 @@ ext {
           // recyclerView多功能适配器
           brvah              : "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30",
 
-          //          supportVersion     : "27.0.1",
-          //          retrofit           : "2.1.0",
-          //          rxlifecycle        : "1.0",
-          //          glide              : "3.7.0",
-          //          okhttp             : "3.3.0",
-          //          album              : "2.0.1",
-          //          durban             : "1.0.1",
-          //          rvAdapter          : "2.9.30",
-          //          tkRefresh          : "1.0.7",
-          //          butterKnife        : "7.0.1",
-          //          blurView           : "1.1.0",
-          //          wechatSdk          : "1.4.0",
-          //          luban              : "top.zibin:Luban:1.1.3"
   ]
 }

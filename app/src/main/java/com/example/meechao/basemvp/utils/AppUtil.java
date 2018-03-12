@@ -10,7 +10,7 @@ import android.os.Build;
 import android.support.v4.content.FileProvider;
 import android.text.TextUtils;
 import android.widget.Toast;
-import com.example.meechao.basemvp.App;
+import com.example.meechao.basemvp.BaseApplication;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -23,7 +23,7 @@ import java.io.File;
  * Date：2017-12-06-0006 16:57
  * Mail：jihaifeng@meechao.com
  */
-public class AppUtils {
+public class AppUtil {
 
   /**
    * 获取 App 版本号
@@ -31,9 +31,9 @@ public class AppUtils {
    * @return App 版本号 versionName
    */
   public static String getAppVersionName() {
-    String packageName = App.getInstance().getPackageName();
+    String packageName = BaseApplication.getInstance().getPackageName();
     try {
-      PackageManager pm = App.getInstance().getPackageManager();
+      PackageManager pm = BaseApplication.getInstance().getPackageManager();
       PackageInfo pi = pm.getPackageInfo(packageName, 0);
       return pi == null ? null : pi.versionName;
     } catch (PackageManager.NameNotFoundException e) {
@@ -48,9 +48,9 @@ public class AppUtils {
    * @return App 版本码 versionCode
    */
   public static int getAppVersionCode() {
-    String packageName = App.getInstance().getPackageName();
+    String packageName = BaseApplication.getInstance().getPackageName();
     try {
-      PackageManager pm = App.getInstance().getPackageManager();
+      PackageManager pm = BaseApplication.getInstance().getPackageManager();
       PackageInfo pi = pm.getPackageInfo(packageName, 0);
       return pi == null ? -1 : pi.versionCode;
     } catch (PackageManager.NameNotFoundException e) {
@@ -79,10 +79,10 @@ public class AppUtils {
     }
     String resultData = null;
     try {
-      PackageManager packageManager = App.getInstance().getPackageManager();
+      PackageManager packageManager = BaseApplication.getInstance().getPackageManager();
       if (packageManager != null) {
         ApplicationInfo applicationInfo =
-            packageManager.getApplicationInfo(App.getInstance().getPackageName(), PackageManager.GET_META_DATA);
+            packageManager.getApplicationInfo(BaseApplication.getInstance().getPackageName(), PackageManager.GET_META_DATA);
         if (applicationInfo != null) {
           if (applicationInfo.metaData != null) {
             resultData = applicationInfo.metaData.getString(key);

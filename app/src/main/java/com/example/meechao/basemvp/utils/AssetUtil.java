@@ -1,6 +1,6 @@
 package com.example.meechao.basemvp.utils;
 
-import com.example.meechao.basemvp.App;
+import com.example.meechao.basemvp.BaseApplication;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,14 +12,14 @@ import java.io.InputStream;
  * Date：2017-12-26 18:13
  * Mail：jihaifeng@meechao.com
  */
-public class AssetUtils {
-  private static final String TAG = AssetUtils.class.getSimpleName().trim();
+public class AssetUtil {
+  private static final String TAG = AssetUtil.class.getSimpleName().trim();
 
   public static String getAssetsData(String assetsFileName) {
     InputStream is = null;
     ByteArrayOutputStream bos = null;
     try {
-      is = App.getInstance().getApplicationContext().getAssets().open(assetsFileName);
+      is = BaseApplication.getInstance().getApplicationContext().getAssets().open(assetsFileName);
       bos = new ByteArrayOutputStream();
       byte[] bytes = new byte[4 * 1024];
       int len;

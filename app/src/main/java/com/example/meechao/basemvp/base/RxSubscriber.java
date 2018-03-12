@@ -1,9 +1,8 @@
 package com.example.meechao.basemvp.base;
 
 import android.util.Log;
-import com.example.meechao.basemvp.App;
+import com.example.meechao.basemvp.BaseApplication;
 import com.example.meechao.basemvp.utils.NetWorkUtil;
-import io.reactivex.plugins.RxJavaPlugins;
 import io.reactivex.subscribers.ResourceSubscriber;
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
@@ -44,7 +43,7 @@ public abstract class RxSubscriber<T> extends ResourceSubscriber<T> {
 
   @Override protected void onStart() {
     super.onStart();
-    if (!NetWorkUtil.isNetworkConnected(App.getInstance().getApplicationContext())) {
+    if (!NetWorkUtil.isNetworkConnected(BaseApplication.getInstance().getApplicationContext())) {
       mView.showNetError();
       _onComplete();
       return;
